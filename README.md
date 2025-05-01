@@ -61,9 +61,9 @@ Const Stroka:string='Привет';
 Отметим, что правила должны быть либо только леворекурсивными, либо только праворекурсивными. Комбинация тех и других не допускается. Данная грамматика содержит только праворекурсивные правила и, следовательно, является полностью автоматной.
 
 ## Граф конечного автомата
-![Alt-текст](https://ibb.co/hJtsgKyJ "Граф конечного автомата")
+![Alt-текст](https://imagizer.imageshack.com/img922/6006/jemk5d.png "Граф конечного автомата")
 
 ## Тестовые примеры:
-![Alt-текст](https://ibb.co/5h8Y0WVf "Пример №1")  
-![Alt-текст](https://ibb.co/FqsTx2dx "Пример №2")  
-![Alt-текст](https://ibb.co/22ZxDNr "Пример №3")
+![Alt-текст](https://imagizer.imageshack.com/img923/6486/dqFH4H.png "Пример №1")  
+![Alt-текст](https://imagizer.imageshack.com/img922/3018/8mVfig.png "Пример №2")  
+![Alt-текст](https://imagizer.imageshack.com/img923/5563/G5jo7f.png "Пример №3")
