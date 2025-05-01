@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace Compiler_Kursovaya
+{
+    class Parser
+    {
+        private List&lt;(int, string, string, int, int)&gt; tokens;
+        private int position;
+        private DataGridView grid;
+        private List&lt;ErrorInfo&gt; errors;
+        private State parserState;
+
+        //код, тип, содержание, начало, конец 
+        public Parser(List&lt;(int, string, string, int, int)&gt; tokens, DataGridView grid)
+        {
+            this.tokens = tokens;
+            this.position = 0;
+            this.grid = grid;
+            this.errors = new List&lt;ErrorInfo&gt;();
+            this.parserState = State.START;
+        }
+
+        public void Run()   
+        {
+            while (position &lt; tokens.Count())
+            {
+                var token = tokens[position];
+                switch (parserState)
+                {
+                    case State.START:
+                        if (token.Item1 == 1)
+                        {
+                            parserState = State.ID;
+                        }
+                        else if (token.Item1 == 9)
+                        {
+                            if (char.IsDigit(token.Item3[0]))
+                            {
+                                AddError("Ключевое слово не может начинаться с цифры!", token);
+                            }
+                            for (int i = 0; i &lt; token.Item3.Length; i++)
+                            {
+                                if (((token.Item3[i] &gt;= 'а') &amp;&amp; (token.Item3[i] &lt;= 'я')) || ((token.Item3[i] &gt;= 'А') &amp;&amp; (token.Item3[i] &lt;= 'Я')) || (!char.IsLetterOrDigit(token.Item3[i])))
+                                {
+                                    int errPosStart = token.Item4 + i;
+                                    int errPosEnd = errPosStart;
+                                    while ((((token.Item3[i] &gt;= 'а') &amp;&amp; (token.Item3[i] &lt;= 'я')) || ((token.Item3[i] &gt;= 'А') &amp;&amp; (token.Item3[i] &lt;= 'Я')) || (!char.IsLetterOrDigit(token.Item3[i]))) &amp;&amp; (i &lt; token.Item3.Length - 1))
+                                    {
+                                        i++;
+                                        errPosEnd++;
+                                    }
+                                    AddError("Ключевое слово не может содержать неопознанные символы и символы кириллицы! ", token);
+                                }
+                            }
+                            parserState = State.ID;
+                        }
+                        else if (position &gt;= tokens.Count())
+                        {
+                            AddError("Ожидалось ключевое слово 'Const', но лексемы не найдено.");
+                        }
+                        else if (position &lt; tokens.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = token.Item4;
+                            int tempPos = position;
+                            var tempToken = tokens[tempPos];
+                            while (tempToken.Item1 != 2 &amp;&amp; tempPos &lt;= tokens.Count())
+                            {
+                                if (tempToken.Item1 == 8)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        AddError("Ожидалось ключевое слово 'Const'.", tempToken);
+                                        parserState = State.END;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    AddError("Ожидалось ключевое слово 'Const'.", tempToken);
+                                    parserState = State.ID;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; tokens.Count())
+                                {
+                                    tempToken = tokens[tempPos];
+                                }
+                                else
+                                {
+                                    fullExit = true;
+                                    AddError("Ожидалось ключевое слово 'Const'.", tempToken);
+                                    parserState = State.ID;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            position++;
+                            parserState = State.ID;
+                            AddError("Ожидалось ключевое слово 'Const'.", tempToken);
+                            continue;
+                        }
+                        else
+                        {
+                            AddError("Ожидалось ключевое слово 'Const'.", token);
+                            parserState = State.ID;
+                        }
+                        if (position - tokens.Count == -1)
+                        {
+                            continue;
+                        }
+                        break;
+
+                    case State.ID:
+                        if (token.Item1 == 2)
+                        {
+                            parserState = State.COLON;
+                        }
+                        else if (token.Item1 == 9)
+                        {
+                            if (char.IsDigit(token.Item3[0]))
+                            {
+                                AddError("Идентификатор не может начинаться с цифры!", token);
+                            }
+                            for (int i = 0; i &lt; token.Item3.Length; i++)
+                            {
+                                if (((token.Item3[i] &gt;= 'а') &amp;&amp; (token.Item3[i] &lt;= 'я')) || ((token.Item3[i] &gt;= 'А') &amp;&amp; (token.Item3[i] &lt;= 'Я')) || (!char.IsLetterOrDigit(token.Item3[i])))
+                                {
+                                    int errPosStart = token.Item4 + i;
+                                    int errPosEnd = errPosStart;
+                                    while ((((token.Item3[i] &gt;= 'а') &amp;&amp; (token.Item3[i] &lt;= 'я')) || ((token.Item3[i] &gt;= 'А') &amp;&amp; (token.Item3[i] &lt;= 'Я')) || (!char.IsLetterOrDigit(token.Item3[i]))) &amp;&amp; (i &lt; token.Item3.Length - 1))
+                                    {
+                                        i++;
+                                        errPosEnd++;
+                                    }
+                                    AddError("Идентификатор не может содержать неопознанные символы и символы кириллицы! ", token);
+                                }
+                            }
+                            parserState = State.COLON;
+                        }
+                        else if (position &gt;= tokens.Count())
+                        {
+                            AddError("Ожидался идентификатор, но лексемы не найдено.");
+                        }
+                        else if (position &lt; tokens.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = token.Item4;
+                            int tempPos = position;
+                            var tempToken = tokens[tempPos];
+                            while (tempToken.Item1 != 5 &amp;&amp; tempPos &lt;= tokens.Count())
+                            {
+                                if (tempToken.Item1 == 8)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        AddError("Ожидался идентификатор.", tempToken);
+                                        parserState = State.END;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    AddError("Ожидался идентификатор.", tempToken);
+                                    parserState = State.COLON;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; tokens.Count())
+                                {
+                                    tempToken = tokens[tempPos];
+                                }
+                                else
+                                {
+                                    fullExit = true;
+                                    AddError("Ожидался идентификатор.", tempToken);
+                                    parserState = State.COLON;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            parserState = State.COLON;
+                            AddError("Ожидался идентификатор.", tempToken);
+                            continue;
+                        }
+                        else
+                        {
+                            AddError("Ожидался идентификатор.", token);
+                            parserState = State.COLON;
+                        }
+                        if (position - tokens.Count == -1)
+                        {
+                            continue;
+                        }
+                        break;
+
+                    case State.COLON:
+                        if (token.Item1 == 5)
+                        {
+                            parserState = State.TYPE;
+                        }
+                        else if (position &gt;= tokens.Count())
+                        {
+                            AddError("Ожидался символ ':', но лексемы не найдено.");
+                        }
+                        else if (position &lt; tokens.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = token.Item4;
+                            int tempPos = position;
+                            var tempToken = tokens[tempPos];
+                            while (tempToken.Item1 != 3 &amp;&amp; tempPos &lt;= tokens.Count())
+                            {
+                                if (tempToken.Item1 == 8)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        AddError("Ожидался символ ':'.", tempToken);
+                                        parserState = State.END;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    AddError("Ожидался символ ':'.", tempToken);
+                                    parserState = State.TYPE;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; tokens.Count())
+                                {
+                                    tempToken = tokens[tempPos];
+                                }
+                                else
+                                {
+                                    fullExit = true;
+                                    AddError("Ожидался символ ':'.", tempToken);
+                                    parserState = State.TYPE;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            parserState = State.TYPE;
+                            AddError("Ожидался символ ':'.", tempToken);
+                            continue;
+                        }
+                        else
+                        {
+                            AddError("Ожидался символ ':'.", token);
+                            parserState = State.TYPE;
+                        }
+                        break;
+
+                    case State.TYPE:
+                        if (token.Item1 == 3)
+                        {
+                            parserState = State.EQUAL;
+                        }
+                        else if (token.Item1 == 9)
+                        {
+                            if (char.IsDigit(token.Item3[0]))
+                            {
+                                AddError("Ключевое слово не может начинаться с цифры!", token);
+                            }
+                            for (int i = 0; i &lt; token.Item3.Length; i++)
+                            {
+                                if (((token.Item3[i] &gt;= 'а') &amp;&amp; (token.Item3[i] &lt;= 'я')) || ((token.Item3[i] &gt;= 'А') &amp;&amp; (token.Item3[i] &lt;= 'Я')) || (!char.IsLetterOrDigit(token.Item3[i])))
+                                {
+                                    int errPosStart = token.Item4 + i;
+                                    int errPosEnd = errPosStart;
+                                    while ((((token.Item3[i] &gt;= 'а') &amp;&amp; (token.Item3[i] &lt;= 'я')) || ((token.Item3[i] &gt;= 'А') &amp;&amp; (token.Item3[i] &lt;= 'Я')) || (!char.IsLetterOrDigit(token.Item3[i]))) &amp;&amp; (i &lt; token.Item3.Length-1))
+                                    {
+                                        i++;
+                                        errPosEnd++;
+                                    }
+                                    AddError("Ключевое слово не может содержать неопознанные символы и символы кириллицы! ", token);
+                                }
+                            }
+                            parserState = State.EQUAL;
+                        }
+                        else if (position &gt;= tokens.Count())
+                        {
+                            AddError("Ожидалось ключевое слово 'string', но лексемы не найдено.");
+                        }
+                        else if (position &lt; tokens.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = token.Item4;
+                            int tempPos = position;
+                            var tempToken = tokens[tempPos];
+                            while (tempToken.Item1 != 6 &amp;&amp; tempPos &lt;= tokens.Count())
+                            {
+                                if (tempToken.Item1 == 8)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        AddError("Ожидалось ключевое слово 'string'.", tempToken);
+                                        parserState = State.END;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    AddError("Ожидалось ключевое слово 'string'.", tempToken);
+                                    parserState = State.EQUAL;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; tokens.Count())
+                                {
+                                    tempToken = tokens[tempPos];
+                                }
+                                else
+                                {
+                                    fullExit = true;
+                                    AddError("Ожидалось ключевое слово 'string'.", tempToken);
+                                    parserState = State.EQUAL;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            parserState = State.EQUAL;
+                            AddError("Ожидалось ключевое слово 'string'.", tempToken);
+                            continue;
+                        }
+                        else
+                        {
+                            AddError("Ожидалось ключевое слово 'string'.", token);
+                            parserState = State.EQUAL;
+                        }
+                        if (position-tokens.Count == -1)
+                        {
+                            continue;
+                        }
+                        break;
+
+                    case State.EQUAL:
+                        if (token.Item1 == 6)
+                        {
+                            parserState = State.STRING;
+                        }
+                        else if (position &gt;= tokens.Count())
+                        {
+                            AddError("Ожидался символ '=', но лексемы не найдено.");
+                        }
+                        else if (position &lt; tokens.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = token.Item4;
+                            int tempPos = position;
+                            var tempToken = tokens[tempPos];
+                            while (tempToken.Item1 != 7 &amp;&amp; tempPos &lt;= tokens.Count())
+                            {
+                                if (tempToken.Item1 == 8)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        AddError("Ожидался символ '='.", tempToken);
+                                        parserState = State.END;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    AddError("Ожидался символ '='.", tempToken);
+                                    parserState = State.STRING;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; tokens.Count())
+                                {
+                                    tempToken = tokens[tempPos];
+                                }
+                                else if (tokens.Count - position == 1)
+                                {
+                                    fullExit = true;
+                                    AddError("Ожидался символ '='.", tempToken);
+                                    parserState = State.STRING;
+                                    break;
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    AddError("Ожидался символ '='.", tempToken);
+                                    parserState = State.STRING;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            parserState = State.STRING;
+                            AddError("Ожидался символ '='.", tempToken);
+                            continue;
+                        }
+                        else
+                        {
+                            AddError("Ожидался символ '='.", token);
+                            parserState = State.STRING;
+                        }
+                        break;
+
+                    case State.STRING:
+                        if (token.Item1 == 7)
+                        {
+                            if (position-tokens.Count() == -1)
+                            {
+                                parserState = State.END;
+                                continue;
+                            }
+                            parserState = State.END;
+                        }
+                        else if (token.Item1 == 9)
+                        {
+                            if (token.Item3[0] != '\'')
+                            {
+                                AddError("Строка должна начинаться с символа '\''.", token);
+                            }
+                            else if (token.Item3[token.Item3.Length-1] != '\'')
+                            {
+                                AddError("Строка должна заканчиваться символом '\''.", token);
+                            }
+                            else
+                            {
+                                for (int i = 0; i &lt; token.Item3.Length; i++)
+                                {
+                                    if (!char.IsLetterOrDigit(token.Item3[i]) &amp;&amp; token.Item3[i] != '\'')
+                                    {
+                                        AddError($"Неопознанный символ в строке: {token.Item3[i]}!", token);
+                                    }
+                                }
+                            }
+                            if (position - tokens.Count() == -1)
+                            {
+                                parserState = State.END;
+                                continue;
+                            }
+                            else
+                            {
+                                parserState = State.END;
+                                position++;
+                                continue;
+                            }
+                        }
+                        else if (position &gt;= tokens.Count())
+                        {
+                            AddError("Ожидалась строка, но лексемы не найдено.");
+                        }
+                        else if (position &lt; tokens.Count())
+                        {
+                            int count = 0;
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = token.Item4;
+                            int tempPos = position;
+                            var tempToken = tokens[tempPos];
+                            while (tempPos &lt;= tokens.Count())
+                            {
+                                if (tempToken.Item1 == 8)
+                                {
+                                    if (count == 0)
+                                    {
+                                        fullExit = true;
+                                        AddError("Ожидалась строка.", tempToken);
+                                        parserState = State.END;
+                                        break;
+                                    }
+                                    fullExit = true;
+                                    AddError("Ожидалась строка.", tempToken);
+                                    parserState = State.END;
+                                    break;
+                                }
+                                if (tempToken.Item1 == 7)
+                                {
+                                    position = tempPos;
+                                    fullExit = true;
+                                    break;
+                                }
+                                count++;
+                                tempPos++;
+                                if (tempPos &lt; tokens.Count())
+                                {
+                                    tempToken = tokens[tempPos];
+                                }
+                                else
+                                {
+                                    tempExit = true;
+                                    AddError("Ожидалась строка.", tempToken);
+                                    parserState = State.END;
+                                    break;
+                                }
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                position++;
+                                continue;
+                            }
+                            position = tempPos;
+                            parserState = State.END;
+                            AddError("Ожидалась строка.", tempToken);
+                            continue;
+                        }
+                        else
+                        {
+                            AddError("Ожидалась строка.", token);
+                            parserState = State.END;
+                        }
+                        break;
+
+                    case State.END:
+                        if (token.Item1 == 8 &amp;&amp; position &gt;= tokens.Count())
+                        {
+                            return;
+                        }
+                        else if (token.Item1 == 8 &amp;&amp; position &lt; tokens.Count())
+                        {
+                            parserState = State.START;
+                        }
+                        else if (position &lt;= tokens.Count())
+                        {
+                            bool fullExit = false;
+                            bool tempExit = false;
+                            int errPosStart = token.Item4;
+                            int tempPos = position;
+                            var tempToken = tokens[tempPos];
+                            while (tempPos &lt; tokens.Count())
+                            {
+                                if (tempToken.Item1 == 8)
+                                {
+                                    fullExit = true;
+                                    AddError("Ожидался символ ';'.", tempToken);
+                                    parserState = State.START;
+                                    break;
+                                }
+                                tempPos++;
+                                if (tempPos == tokens.Count())
+                                {
+                                    AddError("Ожидался символ ';'.", tempToken);
+                                    tempExit = true;
+                                    break;
+                                }
+                                tempToken = tokens[tempPos];
+                            }
+                            if (tempExit)
+                            {
+                                break;
+                            }
+                            if (fullExit)
+                            {
+                                continue;
+                            }
+                            position = tempPos;
+                            parserState = State.START;
+                            AddError("Ожидался символ ';'.", tempToken);
+                            continue;
+                        }
+                        else
+                        {
+                            AddError("Ожидался символ ';'.", token);
+                        }
+                        break;
+                }
+                position++;
+            }
+            DisplayErrors();
+        }
+
+        private void AddError(string message, (int, string, string, int, int)? token)
+        {
+            errors.Add(new ErrorInfo
+            {
+                Name = "Ошибка синтаксиса",
+                Value = message,
+                Location = token == null ? "В конце строки" : $"С {token.Value.Item4} по {token.Value.Item5} символ"
+            });
+        }
+        private void AddError(string message)
+        {
+            errors.Add(new ErrorInfo
+            {
+                Name = "Ошибка синтаксиса",
+                Value = message,
+                Location = "Конец введённой строки"
+            });
+        }
+
+        private void DisplayErrors()
+        {
+            foreach (var error in errors)
+            {
+                grid.Rows.Add(error.Name, error.Value, error.Location);
+            }
+        }
+
+        private enum State
+        {
+            START,
+            ID,
+            COLON,
+            TYPE,
+            EQUAL,
+            STRING,
+            END
+        }
+    }
+
+    public class ErrorInfo
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+        public string Location { get; set; }
+    }
+}</value>
+  </data>
+</root>
