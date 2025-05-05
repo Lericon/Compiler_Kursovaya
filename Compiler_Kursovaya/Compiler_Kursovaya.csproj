@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="File.cs" />
+    <Compile Include="Lab5.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

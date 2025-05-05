@@ -579,21 +579,37 @@ namespace Compiler_Kursovaya
 
         private void StartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DataGridView.Rows.Clear();
             string code = EditRTB.Text;
-            code = code.Trim().Replace("\t", "").Replace("\n", "").Replace("\r", ""); ;
-            Scanner scanner = new Scanner(code);
-            List<(int, string, string, int, int)> tokens = new List<(int, string, string, int, int)>();
-            (int, string, string, int, int) token;
-
-            while ((token = scanner.GetNextToken()).Item1 != (int)TokenType.End)
+            code = code.Trim().Replace("\t", "").Replace("\n", "").Replace("\r", "");
+            if (tabControl1.SelectedTab == ParserPage)
             {
-                tokens.Add(token);
+                DataGridView.Rows.Clear();
+                Scanner scanner = new Scanner(code);
+                List<(int, string, string, int, int)> tokens = new List<(int, string, string, int, int)>();
+                (int, string, string, int, int) token;
+
+                while ((token = scanner.GetNextToken()).Item1 != (int)TokenType.End)
+                {
+                    tokens.Add(token);
+                }
+
+                Parser parser = new Parser(tokens, DataGridView);
+                parser.Run();
             }
-
-            Parser parser = new Parser(tokens, DataGridView);
-            parser.Run();
-
+            else if (tabControl1.SelectedTab == QuadPage)
+            {
+                QuadDGV.Rows.Clear();
+                Lab5 quad = new Lab5(code);
+                quad.Parse();
+                if (quad.errors.Count > 0)
+                {
+                    quad.PrintErrors(QuadDGV);
+                }
+                else
+                {
+                    quad.DisplayQuadruplesInDataGridView(QuadDGV);
+                }
+            }
         }
 
         private void StatementToolStripMenuItem_Click(object sender, EventArgs e)
