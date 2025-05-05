@@ -43,7 +43,6 @@ namespace Compiler_Kursovaya
                     this.position = 0;
                     E();
 
-                    // Добавляем финальное присваивание
                     var lastQuad = quadruples[quadruples.Count - 1];
                     quadruples.Add(new Quadruple
                     {
@@ -150,7 +149,7 @@ namespace Compiler_Kursovaya
         {
             if (position < input.Length && char.IsLetter(input[position]))
             {
-                return Id(); // Просто возвращаем идентификатор без создания тетрады
+                return Id();
             }
             else if (position < input.Length && input[position] == '(')
             {
