@@ -623,9 +623,9 @@ namespace Compiler_Kursovaya
                 EditRTB.SelectionBackColor = EditRTB.BackColor;
                 EditRTB.SelectionColor = EditRTB.ForeColor;
 
-                FindMatches(REDGV, EditRTB, "Файл", text, @"[^\\\/:*?""<>|\s,]+\.(doc|txt|pdf)");
+                FindMatches(REDGV, EditRTB, "Файл", text, @"[^\\\/:*?""<>|,\s]+\.(docx?|pdf)");
                 FindMatches(REDGV, EditRTB, "ФИО", text, @"[А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)?\s[А-ЯЁ]\.[А-ЯЁ]\.");
-                FindMatches(REDGV, EditRTB, "Пароль", text, @"(?=.*[А-ЯЁ])(?=.*[а-яё])(?=.*\d)(?=.*[#?!|/@$%\^&*\-_])[А-ЯЁа-яё\d#?!|/@$%\^&*\-_]{8,}");
+                FindMatches(REDGV, EditRTB, "Пароль", text, @"(?=.*[А-ЯЁ])(?=.*[а-яё])(?=.*\d)(?=.*[#?!|\/@$%\^&*\\\-_])[А-ЯЁа-яё\d#?!|\/@$%\^&*\\\-_]{8,}");
             }
         }
 
