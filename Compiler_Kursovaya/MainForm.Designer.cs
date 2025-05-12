@@ -81,20 +81,24 @@ namespace Compiler_Kursovaya
             this.MainPanel = new System.Windows.Forms.Panel();
             this.EditRTB = new System.Windows.Forms.RichTextBox();
             this.NumbersBox = new System.Windows.Forms.ListBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.ParserPage = new System.Windows.Forms.TabPage();
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.TypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LexemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlaceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.ParserPage = new System.Windows.Forms.TabPage();
             this.QuadPage = new System.Windows.Forms.TabPage();
             this.QuadDGV = new System.Windows.Forms.DataGridView();
             this.opColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.arg1Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.arg2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.REPage = new System.Windows.Forms.TabPage();
+            this.REDGV = new System.Windows.Forms.DataGridView();
+            this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -105,11 +109,13 @@ namespace Compiler_Kursovaya
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.MainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.ParserPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.QuadPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuadDGV)).BeginInit();
+            this.REPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.REDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // MainMenuStrip
@@ -599,6 +605,29 @@ namespace Compiler_Kursovaya
             this.NumbersBox.TabIndex = 4;
             this.NumbersBox.SelectedIndexChanged += new System.EventHandler(this.NumbersBox_SelectedIndexChanged);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.ParserPage);
+            this.tabControl1.Controls.Add(this.QuadPage);
+            this.tabControl1.Controls.Add(this.REPage);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(770, 299);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // ParserPage
+            // 
+            this.ParserPage.Controls.Add(this.DataGridView);
+            this.ParserPage.Location = new System.Drawing.Point(4, 30);
+            this.ParserPage.Name = "ParserPage";
+            this.ParserPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ParserPage.Size = new System.Drawing.Size(762, 265);
+            this.ParserPage.TabIndex = 0;
+            this.ParserPage.Text = "Парсер";
+            this.ParserPage.UseVisualStyleBackColor = true;
+            // 
             // DataGridView
             // 
             this.DataGridView.AllowUserToAddRows = false;
@@ -637,32 +666,6 @@ namespace Compiler_Kursovaya
             this.PlaceColumn.HeaderText = "Местоположение";
             this.PlaceColumn.Name = "PlaceColumn";
             this.PlaceColumn.ReadOnly = true;
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.ParserPage);
-            this.tabControl1.Controls.Add(this.QuadPage);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(770, 299);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // ParserPage
-            // 
-            this.ParserPage.Controls.Add(this.DataGridView);
-            this.ParserPage.Location = new System.Drawing.Point(4, 30);
-            this.ParserPage.Name = "ParserPage";
-            this.ParserPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ParserPage.Size = new System.Drawing.Size(762, 265);
-            this.ParserPage.TabIndex = 0;
-            this.ParserPage.Text = "Парсер";
-            this.ParserPage.UseVisualStyleBackColor = true;
             // 
             // QuadPage
             // 
@@ -722,6 +725,52 @@ namespace Compiler_Kursovaya
             this.resultColumn.ReadOnly = true;
             this.resultColumn.Width = 74;
             // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // REPage
+            // 
+            this.REPage.Controls.Add(this.REDGV);
+            this.REPage.Location = new System.Drawing.Point(4, 30);
+            this.REPage.Name = "REPage";
+            this.REPage.Padding = new System.Windows.Forms.Padding(3);
+            this.REPage.Size = new System.Drawing.Size(762, 265);
+            this.REPage.TabIndex = 2;
+            this.REPage.Text = "Регулярные выражения";
+            this.REPage.UseVisualStyleBackColor = true;
+            // 
+            // REDGV
+            // 
+            this.REDGV.AllowUserToAddRows = false;
+            this.REDGV.AllowUserToDeleteRows = false;
+            this.REDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.REDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.REDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.REDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ValueColumn,
+            this.IndexColumn});
+            this.REDGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.REDGV.Location = new System.Drawing.Point(3, 3);
+            this.REDGV.Name = "REDGV";
+            this.REDGV.ReadOnly = true;
+            this.REDGV.Size = new System.Drawing.Size(756, 259);
+            this.REDGV.TabIndex = 2;
+            // 
+            // ValueColumn
+            // 
+            this.ValueColumn.HeaderText = "Значение";
+            this.ValueColumn.Name = "ValueColumn";
+            this.ValueColumn.ReadOnly = true;
+            this.ValueColumn.Width = 104;
+            // 
+            // IndexColumn
+            // 
+            this.IndexColumn.HeaderText = "Местоположение";
+            this.IndexColumn.Name = "IndexColumn";
+            this.IndexColumn.ReadOnly = true;
+            this.IndexColumn.Width = 161;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,11 +796,13 @@ namespace Compiler_Kursovaya
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ParserPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.QuadPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.QuadDGV)).EndInit();
+            this.REPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.REDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -823,6 +874,10 @@ namespace Compiler_Kursovaya
         private DataGridViewTextBoxColumn arg1Column;
         private DataGridViewTextBoxColumn arg2Column;
         private DataGridViewTextBoxColumn resultColumn;
+        private TabPage REPage;
+        private DataGridView REDGV;
+        private DataGridViewTextBoxColumn ValueColumn;
+        private DataGridViewTextBoxColumn IndexColumn;
     }
 }
 

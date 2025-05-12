@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -249,6 +250,9 @@ namespace Compiler_Kursovaya
 
             anotherFile = true;
             EditRTB.Text = files[TabControl.SelectedIndex].EditText;
+            DataGridView.Rows.Clear();
+            QuadDGV.Rows.Clear();
+            REDGV.Rows.Clear();
 
             this.index = TabControl.SelectedIndex;
         }
@@ -609,6 +613,34 @@ namespace Compiler_Kursovaya
                 {
                     quad.DisplayQuadruplesInDataGridView(QuadDGV);
                 }
+            }
+            else if (tabControl1.SelectedTab == REPage)
+            {
+                REDGV.Rows.Clear();
+                string text = EditRTB.Text;
+
+                EditRTB.SelectAll();
+                EditRTB.SelectionBackColor = EditRTB.BackColor;
+                EditRTB.SelectionColor = EditRTB.ForeColor;
+
+                FindMatches(REDGV, EditRTB, text, @"[^\\\/:*?""<>|,\s]+\.(doc|docx|pdf)");
+                FindMatches(REDGV, EditRTB, text, @"[А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)?\s[А-ЯЁ]\.[А-ЯЁ]\.");
+                FindMatches(REDGV, EditRTB, text, @"(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[#?!|/@$%\^&*\-_])[A-Za-z\d#?!|/@$%\^&*\-_]{8,}");
+            }
+        }
+
+        static void FindMatches(DataGridView dgv, RichTextBox rtb, string text, string pattern)
+        {
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            MatchCollection matches = regex.Matches(text);
+
+            foreach (Match match in matches)
+            {
+                dgv.Rows.Add(match.Value, match.Index);
+
+                rtb.Select(match.Index, match.Length);
+                rtb.SelectionBackColor = Color.Yellow;
+                rtb.SelectionColor = Color.Black;
             }
         }
 
