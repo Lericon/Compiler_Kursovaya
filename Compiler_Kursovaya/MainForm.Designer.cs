@@ -93,11 +93,12 @@ namespace Compiler_Kursovaya
             this.arg1Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.arg2Column = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.REPage = new System.Windows.Forms.TabPage();
             this.REDGV = new System.Windows.Forms.DataGridView();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -725,10 +726,6 @@ namespace Compiler_Kursovaya
             this.resultColumn.ReadOnly = true;
             this.resultColumn.Width = 74;
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            // 
             // REPage
             // 
             this.REPage.Controls.Add(this.REDGV);
@@ -749,6 +746,7 @@ namespace Compiler_Kursovaya
             this.REDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.REDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ValueColumn,
+            this.TypeValueColumn,
             this.IndexColumn});
             this.REDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.REDGV.Location = new System.Drawing.Point(3, 3);
@@ -757,12 +755,23 @@ namespace Compiler_Kursovaya
             this.REDGV.Size = new System.Drawing.Size(756, 259);
             this.REDGV.TabIndex = 2;
             // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
             // ValueColumn
             // 
             this.ValueColumn.HeaderText = "Значение";
             this.ValueColumn.Name = "ValueColumn";
             this.ValueColumn.ReadOnly = true;
             this.ValueColumn.Width = 104;
+            // 
+            // TypeValueColumn
+            // 
+            this.TypeValueColumn.HeaderText = "Тип РВ";
+            this.TypeValueColumn.Name = "TypeValueColumn";
+            this.TypeValueColumn.ReadOnly = true;
+            this.TypeValueColumn.Width = 83;
             // 
             // IndexColumn
             // 
@@ -877,6 +886,7 @@ namespace Compiler_Kursovaya
         private TabPage REPage;
         private DataGridView REDGV;
         private DataGridViewTextBoxColumn ValueColumn;
+        private DataGridViewTextBoxColumn TypeValueColumn;
         private DataGridViewTextBoxColumn IndexColumn;
     }
 }

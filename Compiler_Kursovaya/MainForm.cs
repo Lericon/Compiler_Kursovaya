@@ -623,20 +623,20 @@ namespace Compiler_Kursovaya
                 EditRTB.SelectionBackColor = EditRTB.BackColor;
                 EditRTB.SelectionColor = EditRTB.ForeColor;
 
-                FindMatches(REDGV, EditRTB, text, @"[^\\\/:*?""<>|,\s]+\.(doc|docx|pdf)");
-                FindMatches(REDGV, EditRTB, text, @"[А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)?\s[А-ЯЁ]\.[А-ЯЁ]\.");
-                FindMatches(REDGV, EditRTB, text, @"(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[#?!|/@$%\^&*\-_])[A-Za-z\d#?!|/@$%\^&*\-_]{8,}");
+                FindMatches(REDGV, EditRTB, "Файл", text, @"[^\\\/:*?""<>|\s,]+\.(doc|txt|pdf)");
+                FindMatches(REDGV, EditRTB, "ФИО", text, @"[А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)?\s[А-ЯЁ]\.[А-ЯЁ]\.");
+                FindMatches(REDGV, EditRTB, "Пароль", text, @"(?=.*[А-ЯЁ])(?=.*[а-яё])(?=.*\d)(?=.*[#?!|/@$%\^&*\-_])[А-ЯЁа-яё\d#?!|/@$%\^&*\-_]{8,}");
             }
         }
 
-        static void FindMatches(DataGridView dgv, RichTextBox rtb, string text, string pattern)
+        static void FindMatches(DataGridView dgv, RichTextBox rtb, string type, string text, string pattern)
         {
             Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
             MatchCollection matches = regex.Matches(text);
 
             foreach (Match match in matches)
             {
-                dgv.Rows.Add(match.Value, match.Index);
+                dgv.Rows.Add(match.Value, type, match.Index);
 
                 rtb.Select(match.Index, match.Length);
                 rtb.SelectionBackColor = Color.Yellow;
