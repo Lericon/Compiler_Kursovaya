@@ -627,6 +627,21 @@ namespace Compiler_Kursovaya
                 FindMatches(REDGV, EditRTB, "ФИО", text, @"[А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)?\s[А-ЯЁ]\.[А-ЯЁ]\.");
                 FindMatches(REDGV, EditRTB, "Пароль", text, @"(?=.*[А-ЯЁ])(?=.*[а-яё])(?=.*\d)(?=.*[#?!|\/@$%\^&*\\\-_])[А-ЯЁа-яё\d#?!|\/@$%\^&*\\\-_]{8,}");
             }
+            else if (tabControl1.SelectedTab == Lab8Page)
+            {
+                Lab8_DGV.Rows.Clear();
+                string text = EditRTB.Text;
+                var lexer = new Lab8_Lexer(text);
+                var tokens = lexer.GetTokens();
+
+                var parser = new Lab8_Parser(tokens);
+                List<string> items = parser.GetParseTrace();
+                foreach (string item in items)
+                {
+                    Lab8_DGV.Rows.Add(item, "", "");
+                }
+                
+            }
         }
 
         static void FindMatches(DataGridView dgv, RichTextBox rtb, string type, string text, string pattern)
