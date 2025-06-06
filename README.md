@@ -28,7 +28,7 @@ Const Stroka:string='Привет';
 ```
 
 ## Примеры допустимых строк:
-В связи с разработанной автоматной грамматикой G[‹START›] синтаксический анализатор (парсер) строковых констант будет считать верными следующие записи констант:
+В связи с разработанной автоматной грамматикой G\[\‹START\›\] синтаксический анализатор (парсер) строковых констант будет считать верными следующие записи констант:
 ```
 1.	"Const a:string=’abc’;"
 2.	"Const b : string = ‘abc’;"
@@ -36,41 +36,41 @@ Const Stroka:string='Привет';
 ```
 
 ## Разработанная грамматика
-Определим грамматику строковых констант языка Pascal G[‹START›] в нотации Хомского с продукциями P:
-1.	<START> → 'Const'<SEPARATOR>
-2.	< SEPARATOR > → '_'<ID>
-3.	<ID> → IdSymbols<IDREM>
-4.	<IDREM> → Letter<IDREM>
-5.	<IDREM> → ':'<TYPE>
-6.	<TYPE> → 'string'<EQUAL>
-7.	<EQUAL> → '='<QUOTE>
-8.	<QUOTE> → '’'<WORDS>
-9.	<WORDS> → Letter<WORDSREM>
-10.	<WORDSREM> → Letter <WORDSREM>
-11.	<WORDSREM> → '’' <SYMBOL_END>
-12.	<SYMBOL_END> → ';'  
+Определим грамматику строковых констант языка Pascal G\[\‹START\›\] в нотации Хомского с продукциями P:
+1.	\<START\> → 'Const'\<SEPARATOR\>
+2.	\<SEPARATOR\> → '_'\<ID\>
+3.	\<ID\> → IdSymbols\<IDREM\>
+4.	\<IDREM\> → Letter\<IDREM\>
+5.	\<IDREM\> → ':'\<TYPE\>
+6.	\<TYPE\> → 'string'\<EQUAL\>
+7.	\<EQUAL\> → '='\<QUOTE\>
+8.	\<QUOTE\> → '’'\<WORDS\>
+9.	\<WORDS\> → Letter\<WORDSREM\>
+10.	\<WORDSREM\> → Letter \<WORDSREM\>
+11.	\<WORDSREM\> → '’' \<SYMBOL_END\>
+12.	\<SYMBOL_END\> → ';'  
 - IdSymbols → 'a' | 'b' | 'c' | ... | 'z' | 'A' | 'B' | 'C' | ... | 'Z'
 - Letter → 'a' | 'b' | 'c' | ... | 'z' | 'A' | 'B' | 'C' | ... | 'Z' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '0'  
-Следуя формальному определению грамматики, представим G[<START>] ее составляющими:
-- Z = <START>;
+Следуя формальному определению грамматики, представим G\[\<START\>\] ее составляющими:
+- Z = \<START\>;
 - VT = {a, b, c, ..., z, A, B, C, ..., Z, _, =, +, -, ’, ;, 0, 1, 2, ..., 9};
-- VN = {<START>, <SEPARATOR>, <ID>, <IDREM>, <TYPE>, <EQUAL>, <QUOTE>, <WORDS>, <WORDSREM>, <SYMBOL_END>};
+- VN = {\<START\>, \<SEPARATOR\>, \<ID\>, \<IDREM\>, \<TYPE\>, \<EQUAL\>, \<QUOTE\>, \<WORDS\>, \<WORDSREM\>, \<SYMBOL_END\>};
 
 ## Классификация грамматики
-Согласно классификации Хомского, грамматика G[‹START›] является автоматной.  
+Согласно классификации Хомского, грамматика G\[\‹START\›\] является автоматной.  
 Правила 1-12 относятся к классу праворекурсивных продукций (A → aB | a | ε):
-1.	<START> → 'Const'<SEPARATOR>
-2.	< SEPARATOR > → '_'<ID>
-3.	<ID> → IdSymbols<IDREM>
-4.	<IDREM> → Letter<IDREM>
-5.	<IDREM> → ':'<TYPE>
-6.	<TYPE> → 'string'<EQUAL>
-7.	<EQUAL> → '='<QUOTE>
-8.	<QUOTE> → '’'<WORDS>
-9.	<WORDS> → Letter<WORDSREM>
-10.	<WORDSREM> → Letter <WORDSREM>
-11.	<WORDSREM> → '’' <SYMBOL_END>
-12.	<SYMBOL_END> → ';'  
+1.	\<START\> → 'Const'\<SEPARATOR\>
+2.	\<SEPARATOR\> → '_'\<ID\>
+3.	\<ID\> → IdSymbols\<IDREM\>
+4.	\<IDREM\> → Letter\<IDREM\>
+5.	\<IDREM\> → ':'\<TYPE\>
+6.	\<TYPE\> → 'string'\<EQUAL\>
+7.	\<EQUAL\> → '='\<QUOTE\>
+8.	\<QUOTE\> → '’'\<WORDS\>
+9.	\<WORDS\> → Letter\<WORDSREM\>
+10.	\<WORDSREM\> → Letter \<WORDSREM\>
+11.	\<WORDSREM\> → '’' \<SYMBOL_END\>
+12.	\<SYMBOL_END\> → ';'  
 
 Отметим, что правила должны быть либо только леворекурсивными, либо только праворекурсивными. Комбинация тех и других не допускается. Данная грамматика содержит только праворекурсивные правила и, следовательно, является полностью автоматной.
 
@@ -116,11 +116,10 @@ Const Stroka:string='Привет';
 
 ## Задания на ЛР6 и их решение
 1. I блок - задача №7:  
-Построить РВ, описывающее формат имени файла .doc, .docx, .pdf (можно выбрать другие форматы).
-Вместо .docx выбран формат .txt  
+Построить РВ, описывающее формат имени файла .doc, .docx, .pdf.
 Решение:  
 ```
-[^\\\/:*?""<>|,\s]+\.(doc|txt|pdf)
+[^\\\/:*?""<>|,\s]+\.(docx?|pdf)
 ``` 
 2. II блок - задача №15:  
 Построить РВ, описывающее ФИО человека на русском языке (фамилия полностью и инициалы имени и отчества).  
