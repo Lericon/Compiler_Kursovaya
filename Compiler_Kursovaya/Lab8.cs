@@ -29,11 +29,26 @@ namespace Compiler_Kursovaya
         }
     }
 
+    public class LexicalError
+    {
+        public int Position { get; }
+        public char Symbol { get; }
+        public string Message { get; }
+
+        public LexicalError(int position, char symbol, string message)
+        {
+            Position = position;
+            Symbol = symbol;
+            Message = message;
+        }
+    }
+
     public class Lab8_Lexer
     {
         private readonly string _input;
         private int _pos = 0;
         private readonly List<Lab8_Token> _tokens = new List<Lab8_Token>();
+        private readonly List<LexicalError> _errors = new List<LexicalError>();
 
         public Lab8_Lexer(string input)
         {
@@ -45,7 +60,6 @@ namespace Compiler_Kursovaya
         {
             while (_pos < _input.Length)
             {
-                // Пропуск пробелов и табов
                 while (_pos < _input.Length && char.IsWhiteSpace(_input[_pos]))
                     _pos++;
 
@@ -57,6 +71,7 @@ namespace Compiler_Kursovaya
                 if (char.IsDigit(c))
                 {
                     string number = "";
+                    int start = _pos;
                     while (_pos < _input.Length && char.IsDigit(_input[_pos]))
                         number += _input[_pos++];
 
@@ -83,6 +98,8 @@ namespace Compiler_Kursovaya
                 }
                 else
                 {
+                    // Ошибочный символ
+                    _errors.Add(new LexicalError(_pos, c, $"Недопустимый символ: '{c}'"));
                     _tokens.Add(new Lab8_Token(Lab8_TokenType.Unknown, c.ToString()));
                     _pos++;
                 }
@@ -92,6 +109,8 @@ namespace Compiler_Kursovaya
         }
 
         public List<Lab8_Token> GetTokens() => _tokens;
+
+        public List<LexicalError> GetErrors() => _errors;
     }
 
     public class Lab8_Parser

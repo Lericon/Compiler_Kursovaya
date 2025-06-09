@@ -633,14 +633,23 @@ namespace Compiler_Kursovaya
                 string text = EditRTB.Text;
                 var lexer = new Lab8_Lexer(text);
                 var tokens = lexer.GetTokens();
-
-                var parser = new Lab8_Parser(tokens);
-                List<string> items = parser.GetParseTrace();
-                foreach (string item in items)
+                var errors = lexer.GetErrors();
+                if (errors.Count != 0)
                 {
-                    Lab8_DGV.Rows.Add(item, "", "");
+                    foreach (var error in errors)
+                    {
+                        Lab8_DGV.Rows.Add(error.Message);
+                    }
                 }
-                
+                else
+                {
+                    var parser = new Lab8_Parser(tokens);
+                    List<string> items = parser.GetParseTrace();
+                    foreach (string item in items)
+                    {
+                        Lab8_DGV.Rows.Add(item, "", "");
+                    }
+                }
             }
         }
 
