@@ -95,16 +95,14 @@ namespace Compiler_Kursovaya
             this.resultColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.REPage = new System.Windows.Forms.TabPage();
             this.REDGV = new System.Windows.Forms.DataGridView();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.Lab8Page = new System.Windows.Forms.TabPage();
-            this.Lab8_DGV = new System.Windows.Forms.DataGridView();
             this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IndexColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lab8Page = new System.Windows.Forms.TabPage();
+            this.Lab8_DGV = new System.Windows.Forms.DataGridView();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.Lab8_Procedure = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lab8_Token = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lab8_Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MainMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -763,38 +761,6 @@ namespace Compiler_Kursovaya
             this.REDGV.Size = new System.Drawing.Size(756, 259);
             this.REDGV.TabIndex = 2;
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            // 
-            // Lab8Page
-            // 
-            this.Lab8Page.Controls.Add(this.Lab8_DGV);
-            this.Lab8Page.Location = new System.Drawing.Point(4, 30);
-            this.Lab8Page.Name = "Lab8Page";
-            this.Lab8Page.Size = new System.Drawing.Size(762, 265);
-            this.Lab8Page.TabIndex = 3;
-            this.Lab8Page.Text = "Lab8";
-            this.Lab8Page.UseVisualStyleBackColor = true;
-            // 
-            // Lab8_DGV
-            // 
-            this.Lab8_DGV.AllowUserToAddRows = false;
-            this.Lab8_DGV.AllowUserToDeleteRows = false;
-            this.Lab8_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.Lab8_DGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.Lab8_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Lab8_DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Lab8_Procedure,
-            this.Lab8_Token,
-            this.Lab8_Message});
-            this.Lab8_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Lab8_DGV.Location = new System.Drawing.Point(0, 0);
-            this.Lab8_DGV.Name = "Lab8_DGV";
-            this.Lab8_DGV.ReadOnly = true;
-            this.Lab8_DGV.Size = new System.Drawing.Size(762, 265);
-            this.Lab8_DGV.TabIndex = 3;
-            // 
             // ValueColumn
             // 
             this.ValueColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -816,26 +782,42 @@ namespace Compiler_Kursovaya
             this.IndexColumn.ReadOnly = true;
             this.IndexColumn.Width = 161;
             // 
+            // Lab8Page
+            // 
+            this.Lab8Page.Controls.Add(this.Lab8_DGV);
+            this.Lab8Page.Location = new System.Drawing.Point(4, 30);
+            this.Lab8Page.Name = "Lab8Page";
+            this.Lab8Page.Size = new System.Drawing.Size(762, 265);
+            this.Lab8Page.TabIndex = 3;
+            this.Lab8Page.Text = "Lab8";
+            this.Lab8Page.UseVisualStyleBackColor = true;
+            // 
+            // Lab8_DGV
+            // 
+            this.Lab8_DGV.AllowUserToAddRows = false;
+            this.Lab8_DGV.AllowUserToDeleteRows = false;
+            this.Lab8_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.Lab8_DGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Lab8_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Lab8_DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Lab8_Procedure});
+            this.Lab8_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Lab8_DGV.Location = new System.Drawing.Point(0, 0);
+            this.Lab8_DGV.Name = "Lab8_DGV";
+            this.Lab8_DGV.ReadOnly = true;
+            this.Lab8_DGV.Size = new System.Drawing.Size(762, 265);
+            this.Lab8_DGV.TabIndex = 3;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
             // Lab8_Procedure
             // 
             this.Lab8_Procedure.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Lab8_Procedure.HeaderText = "Процедура";
+            this.Lab8_Procedure.HeaderText = "Сообщение";
             this.Lab8_Procedure.Name = "Lab8_Procedure";
             this.Lab8_Procedure.ReadOnly = true;
-            // 
-            // Lab8_Token
-            // 
-            this.Lab8_Token.HeaderText = "Токен";
-            this.Lab8_Token.Name = "Lab8_Token";
-            this.Lab8_Token.ReadOnly = true;
-            this.Lab8_Token.Width = 77;
-            // 
-            // Lab8_Message
-            // 
-            this.Lab8_Message.HeaderText = "Сообщение";
-            this.Lab8_Message.Name = "Lab8_Message";
-            this.Lab8_Message.ReadOnly = true;
-            this.Lab8_Message.Width = 119;
             // 
             // MainForm
             // 
@@ -950,8 +932,6 @@ namespace Compiler_Kursovaya
         private DataGridViewTextBoxColumn TypeValueColumn;
         private DataGridViewTextBoxColumn IndexColumn;
         private DataGridViewTextBoxColumn Lab8_Procedure;
-        private DataGridViewTextBoxColumn Lab8_Token;
-        private DataGridViewTextBoxColumn Lab8_Message;
     }
 }
 
